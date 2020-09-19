@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Form from "./components/Form";
+import Reactor from "./components/Reactor";
 
 function App() {
+  const [name, setName] = useState("");
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+
+  function onSubmitHandler(data) {
+    setName(data.name);
+    setColor(data.color);
+    setSize(data.size);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Form onSubmit={onSubmitHandler} />
+      <Reactor name={name} color={color} size={size} />
     </div>
   );
 }
